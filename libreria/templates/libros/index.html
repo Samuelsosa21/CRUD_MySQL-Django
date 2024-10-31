@@ -34,16 +34,19 @@
                     </tr>
                 </thead>
                 <tbody>
+                    {% for libro in libros %}
                     <tr class="">
-                        <td scope="row">1</td>
-                        <td>Django con Python</td>
-                        <td>Imagen.jgp</td>
-                        <td>Libros referente a el Framework de Django</td>
+                        <td scope="row">{{ libro.id }}</td>
+                        <td>{{ libro.title }}</td>
+                        <td>
+                            <img src="{{ libro.image.url }}" height="100"/>
+                        </td>
+                        <td>{{ libro.description }}</td>
                         <td><a
                             name=""
                             id=""
                             class="btn btn-primary"
-                            href="{% url "editar" %}"
+                            href="{% url 'editar' libro.id %}"
                             role="button"
                             >Editar</a
                         >
@@ -51,12 +54,13 @@
                             name=""
                             id=""
                             class="btn btn-danger"
-                            href="#"
+                            href="{% url 'eliminar' libro.id %}"
                             role="button"
                             >Eliminar</a
                          >
                          </td>
                     </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>
